@@ -1,9 +1,11 @@
 package com.tng.javafx.timesheet.weekview;
 
+import com.tng.javafx.timesheet.project.Project;
+
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 public class WeekView {
 	private final IntegerProperty sun;
@@ -14,10 +16,10 @@ public class WeekView {
 	private final IntegerProperty fri;
 	private final IntegerProperty sat;
 
-	private final StringProperty project;
+	private final ObjectProperty<Project> project;
 	private final IntegerProperty total;
 
-	public WeekView(String project, Integer mon, Integer tus, Integer wed, Integer thu, Integer fri, Integer sat,
+	public WeekView(Project project, Integer mon, Integer tus, Integer wed, Integer thu, Integer fri, Integer sat,
 			Integer sun) {
 		this.sun = new SimpleIntegerProperty(sun);
 		this.mon = new SimpleIntegerProperty(mon);
@@ -26,12 +28,12 @@ public class WeekView {
 		this.thu = new SimpleIntegerProperty(thu);
 		this.fri = new SimpleIntegerProperty(fri);
 		this.sat = new SimpleIntegerProperty(sat);
-		this.project = new SimpleStringProperty(project);
+		this.project = new SimpleObjectProperty<Project>(project);
 		this.total = new SimpleIntegerProperty(sun + mon + tus + wed + thu + fri + sat);
 		// System.out.println(this.total);
 	}
 
-	public StringProperty getProject() {
+	public ObjectProperty<Project> getProject() {
 		return project;
 	}
 

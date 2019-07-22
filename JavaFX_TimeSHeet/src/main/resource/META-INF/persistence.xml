@@ -6,7 +6,7 @@
   <persistence-unit name="test">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>Test</class>
-    <class>Project</class>
+    <class>com.tng.javafx.timesheet.project.Project</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
       <!--

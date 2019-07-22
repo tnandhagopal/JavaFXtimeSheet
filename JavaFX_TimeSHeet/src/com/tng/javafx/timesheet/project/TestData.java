@@ -20,8 +20,7 @@ public class TestData {
 		EntityTransaction tx = em.getTransaction();
 
 		Test test = em.find(Test.class, 1);
-		
-		
+
 		if (test == null) {
 			System.out.format("new record");
 			test = new Test();
@@ -40,16 +39,17 @@ public class TestData {
 			if (project == null) {
 				System.out.format("new project record");
 				project = new Project();
-				project.id = i;
-				project.code = "W00" + i;
-				project.name = "Avalog-Testing-" + i;
+				project.setId(i);
+				project.setCode("W00" + i);
+				project.setName("Avalog-Testing-" + i);
 
 				tx.begin();
 				em.persist(project);
 				tx.commit();
-				
+
 			}
-			System.out.format("Project{Id=%s, Code=%s, Name=%s}\n", project.id, project.code, project.name);
+			System.out.format("Project{Id=%s, Code=%s, Name=%s}\n", project.getId(), project.getCode(),
+					project.getName());
 		}
 
 		em.close();

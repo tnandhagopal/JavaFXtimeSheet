@@ -6,11 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.HashMap;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-
+import com.tng.javafx.timesheet.project.Project;
+import com.tng.javafx.timesheet.project.ProjectData;
 import com.tng.javafx.timesheet.project.TestData;
 
 import javafx.collections.FXCollections;
@@ -20,15 +17,17 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 
 public class WeekViewController {
 
 	@FXML
-	private TableColumn<WeekView, String> colProject;
+	private TableColumn<WeekView, Project> colProject;
 
 	@FXML
 	private TableColumn<WeekView, Number> colMon;
@@ -71,12 +70,18 @@ public class WeekViewController {
 	HashMap<DayOfWeek, Object> hmTableColumn = new HashMap<DayOfWeek, Object>();
 
 	private ObservableList<WeekView> masterData = FXCollections.observableArrayList();
+	private ObservableList<Project> project = FXCollections.observableArrayList();
+
+	ProjectData projectData = new ProjectData();
 
 	@FXML
 	public void initialize() {
 		System.out.println("initialize");
-		testDB();
-		masterData.add(new WeekView("rrr", 1, 2, 3, 4, 5, 6, 7));
+		// testDB();
+		project = projectData.getProjectsObservableList();
+
+		masterData.add(new WeekView(projectData.getProject(1), 1, 2, 3, 4, 5, 6, 7));
+		masterData.add(new WeekView(projectData.getProject(2), 7, 8, 5, 3, 2, 8, 2));
 
 		hmTableColumn.put(DayOfWeek.MONDAY, colMon);
 		hmTableColumn.put(DayOfWeek.TUESDAY, colTus);
@@ -90,8 +95,37 @@ public class WeekViewController {
 		setWeekView(firstOfCurrentWeek);
 
 		colProject.setCellValueFactory(cellData -> cellData.getValue().getProject());
-		colProject.setCellFactory(ComboBoxTableCell.forTableColumn("Friends", "Family", "Work Contacts"));
-		colProject.setOnEditCommit(edit -> System.out.println(edit.getNewValue()));
+
+		colProject.setCellFactory(column -> {
+			return new TableCell<WeekView, Project>() {
+				@Override
+				protected void updateItem(Project item, boolean empty) {
+					super.updateItem(item, empty);
+
+					if (item == null || empty) {
+						setText(null);
+					} else {
+						setText(item.getName());
+					}
+				}
+			};
+		});
+
+		colProject.setCellFactory(ComboBoxTableCell.forTableColumn(new StringConverter<Project>() {
+
+			@Override
+			public String toString(Project project) {
+				return project.getName();
+			}
+
+			@Override
+			public Project fromString(String string) {
+				return null;
+			}
+
+		}, project));
+
+		colProject.setOnEditCommit(edit -> System.out.println(edit.getNewValue().getName()));
 
 		colMon.setCellValueFactory(cellData -> cellData.getValue().getMon());
 		colTus.setCellValueFactory(cellData -> cellData.getValue().getTus());
