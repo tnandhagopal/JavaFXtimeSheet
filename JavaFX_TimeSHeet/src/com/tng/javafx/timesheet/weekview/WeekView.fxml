@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<VBox fx:id="vboxWeekView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tng.javafx.timesheet.weekview.WeekViewController">
+   <children>
+      <AnchorPane VBox.vgrow="ALWAYS">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets top="50.0" />
+                           </HBox.margin>
+                           <children>
+                              <GridPane HBox.hgrow="ALWAYS">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Hyperlink fx:id="hlBackward" onAction="#handleBackward" text="&lt;&lt;" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                    <Hyperlink fx:id="hlForward" onAction="#handleForward" text="&gt;&gt;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </HBox>
+                     </children></HBox>
+                  <TableView fx:id="tableWeekView" editable="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="colProject" minWidth="-Infinity" prefWidth="200.0" sortable="false" text="Project" />
+                        <TableColumn fx:id="colMon" prefWidth="75.0" sortable="false" text="Mon" />
+                        <TableColumn fx:id="colTus" prefWidth="75.0" sortable="false" text="Tus" />
+                        <TableColumn fx:id="colWed" prefWidth="75.0" sortable="false" text="Wed" />
+                        <TableColumn fx:id="colThu" prefWidth="75.0" sortable="false" text="Thu" />
+                        <TableColumn fx:id="colFri" prefWidth="75.0" sortable="false" text="Fri" />
+                        <TableColumn fx:id="colSat" prefWidth="75.0" sortable="false" text="Sat" />
+                      <TableColumn fx:id="colSun" prefWidth="75.0" sortable="false" text="Sun" />
+                        <TableColumn fx:id="colTotal" prefWidth="75.0" sortable="false" text="Total" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

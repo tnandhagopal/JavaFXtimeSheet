@@ -1,0 +1,17 @@
+.menu-bar {
+    -fx-background-color: #aeb5ba, linear-gradient(to bottom, #ecf4fa 0.0%, #ced4d9 100.0%);
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+}
+
+.menu-bar .menu .label {
+    -fx-text-fill: #2d3e4c;
+}
+
+.label {
+	-fx-alignment: baseline-left;
+}
+
+.gridPane {
+	-fx-row-valignment: CENTER;
+}
+
