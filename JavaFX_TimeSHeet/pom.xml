@@ -15,7 +15,7 @@
 				</excludes>
 			</resource>
 			<resource>
-				<directory>src/resources</directory>
+				<directory>src/main/resource</directory>
 			</resource>
 		</resources>
 		<plugins>
