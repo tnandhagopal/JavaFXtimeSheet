@@ -5,19 +5,24 @@
   version="2.0">
   <persistence-unit name="test">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <class>Test</class>
     <class>com.tng.javafx.timesheet.project.Project</class>
+    <class>com.tng.javafx.timesheet.employee.Employee</class>
+    <class>com.tng.javafx.timesheet.employee.EmployeeProject</class>
+    <class>com.tng.javafx.timesheet.employee.EmployeeTimeSheet</class>
+    <class>com.tng.javafx.timesheet.employee.EmployeeLeave</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
       <!--
         if you don't have a database already created
         append ;create=true to end of the jdbc url
+              <property name="javax.persistence.jdbc.url" value="jdbc:derby:test;create=true" />
+        <property name="javax.persistence.jdbc.url" value="jdbc:derby:test" />
       -->
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby:test" />
+       <property name="javax.persistence.jdbc.url" value="jdbc:derby:test" />
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.password" value="root"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
-    
+	  <property name="hibernate.show_sql" value="true"/>
       <!--  
         if you just created the database, maybe
         you want hibernate to create a schema for you
